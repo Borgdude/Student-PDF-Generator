@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.collections.*?> 
+<?import fxmltableview.*?>
+<?import javafx.geometry.Insets?>
+<?import java.lang.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.control.cell.*?>
+<?import javafx.scene.layout.*?>
+
+<?import com.borgdude.generator.model.Student?>
+
+<VBox fx:controller="com.borgdude.generator.window.WindowController" xmlns:fx="http://javafx.com/fxml">
+	<MenuBar GridPane.columnIndex="0" GridPane.rowIndex="0">
+     	<menus>
+	     	<Menu text="File">  
+	             <items>  
+	                 <MenuItem text="Open" onAction="#loadExcel" />  
+	                 <MenuItem text="Save"/>  
+	                 <MenuItem text="Save As" onAction="#saveToExcel"/>  
+	                 <SeparatorMenuItem  />  
+	                 <MenuItem text="Exit"/>  
+	             </items>  
+	         </Menu>
+	         <Menu text="Help">  
+                <items>  
+                    <MenuItem text="Search"/>  
+                    <MenuItem text="Online Manual"/>  
+                    <SeparatorMenuItem />  
+                    <MenuItem text="About" />  
+                </items>  
+            </Menu>    
+	     </menus>
+     </MenuBar>
+	<GridPane alignment="center" hgap="10.0" vgap="10.0">
+	     <padding>
+	         <Insets bottom="10.0" left="10.0" right ="10.0"/>
+	     </padding> 
+	     <Label text="Student Information" GridPane.columnIndex="0" GridPane.rowIndex="1" 
+	            style="-fx-font: NORMAL 20 Tahoma;"/>
+	     <TableView fx:id="tableView" GridPane.columnIndex="0" 
+	                    GridPane.rowIndex="2">
+	          <columns>
+	              <TableColumn text="First Name" prefWidth="100">
+	                  <cellValueFactory>
+	                      <PropertyValueFactory property="firstName" />
+	                  </cellValueFactory>
+	              </TableColumn>
+	              <TableColumn text="Last Name" prefWidth="100">
+	                  <cellValueFactory>
+	                      <PropertyValueFactory property="lastName" />
+	                  </cellValueFactory>
+	              </TableColumn>
+	              <TableColumn text="Picture" prefWidth="200">
+	                  <cellValueFactory>
+	                      <PropertyValueFactory property="picture" />
+	                  </cellValueFactory>
+	              </TableColumn>
+	          </columns>    
+	          <items>
+	              <FXCollections fx:factory="observableArrayList">
+	                  <Student firstName="Jacob" lastName="Smith"  
+	                          picture="C:\Users\Borgdude\Dropbox\Borgdude\TONI.png"/>
+	                  <Student firstName="Isabella" lastName="Johnson" 
+	                          picture="C:\Users\Borgdude\Dropbox\Borgdude\TONI.png"/>
+	                  <Student firstName="Ethan" lastName="Williams" 
+	                          picture="C:\Users\Borgdude\Dropbox\Borgdude\TONI.png"/>
+	                  <Student firstName="Emma" lastName="Jones" 
+	                          picture="C:\Users\Borgdude\Dropbox\Borgdude\TONI.png"/>
+	                  <Student firstName="Michael" lastName="Brown" 
+	                          picture="C:\Users\Borgdude\Dropbox\Borgdude\TONI.png"/>
+	              </FXCollections>
+	          </items>
+	     </TableView>
+	     <VBox GridPane.columnIndex="1" GridPane.rowIndex="1" prefWidth="200">
+	     	<Label text="Student Details" style="-fx-font: NORMAL 20 Tahoma;"/>
+	     </VBox>     
+	     <HBox spacing="10" alignment="bottom_right" GridPane.columnIndex="0" 
+	             GridPane.rowIndex="3">
+	            <TextField fx:id="firstNameField" promptText="First Name"
+	                         prefWidth="90"/>
+	            <TextField fx:id="lastNameField" promptText="Last Name"
+	                         prefWidth="90"/>
+	            <TextField fx:id="pictureField" promptText="Picture"
+	                         prefWidth="150" disable="true"/>
+	            <Button text="Choose Picture" fx:id="picBtn" prefWidth="100" onAction="#choosePicture"/>        
+	            <Button text="Add" onAction="#addStudent"/>	            
+	      </HBox>
+	      <HBox spacing="10" alignment="BOTTOM_CENTER" GridPane.columnIndex="0" GridPane.rowIndex="4">
+	     	<Button text="Delete" onAction="#deleteStudent"/>
+	     	<Button text="Edit" onAction="#editStudent"/>
+	      </HBox>
+	      <Button GridPane.columnIndex="0" GridPane.rowIndex="5" text="Generate PDF" onAction="#generateBdf"/>	
+	</GridPane>
+</VBox>
+
+
