@@ -6,8 +6,10 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.net.URL;
 import java.util.Iterator;
 import java.util.Optional;
+import java.util.ResourceBundle;
 
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
@@ -20,27 +22,55 @@ import com.itextpdf.text.DocumentException;
 
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.util.Callback;
 
 
-public class WindowController {
+public class WindowController implements Initializable{
 	@FXML private TableView<Student> tableView;
     @FXML private TextField firstNameField;
     @FXML private TextField lastNameField;
     @FXML private TextField pictureField;
+    @FXML private Label studentNameLabel;
+    @FXML private ImageView studentImage;
+//    @FXML private Label lastNameLabel;
     @FXML private Button generateBtn;
     @FXML private Button picBtn;
+   
+    @Override
+    public void initialize(URL url, ResourceBundle rb){
+    	tableView.setOnMousePressed(new EventHandler<MouseEvent>(){
+    		
+    		@Override
+    		public void handle(MouseEvent event){
+    			Student selectedItem = tableView.getSelectionModel().getSelectedItem();
+    			studentNameLabel.setText(selectedItem.getFullName());
+    			
+    			System.out.println(selectedItem.getPicture().toString());
+    			
+    			File file = new File(selectedItem.getPicture().toString());
+    	        Image image = new Image(file.toURI().toString());
+    	        
+    	        studentImage.setImage(image);
+    		}
+    	});
+    }
     
     @FXML
     protected void addStudent(ActionEvent event) {

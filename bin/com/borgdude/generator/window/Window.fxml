@@ -5,6 +5,7 @@
 <?import javafx.geometry.Insets?>
 <?import java.lang.*?>
 <?import javafx.scene.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.control.cell.*?>
 <?import javafx.scene.layout.*?>
@@ -16,21 +17,12 @@
      	<menus>
 	     	<Menu text="File">  
 	             <items>  
-	                 <MenuItem text="Open" onAction="#loadExcel" />  
-	                 <MenuItem text="Save"/>  
+	                 <MenuItem text="Open" onAction="#loadExcel" />   
 	                 <MenuItem text="Save As" onAction="#saveToExcel"/>  
 	                 <SeparatorMenuItem  />  
 	                 <MenuItem text="Exit"/>  
 	             </items>  
-	         </Menu>
-	         <Menu text="Help">  
-                <items>  
-                    <MenuItem text="Search"/>  
-                    <MenuItem text="Online Manual"/>  
-                    <SeparatorMenuItem />  
-                    <MenuItem text="About" />  
-                </items>  
-            </Menu>    
+	         </Menu>    
 	     </menus>
      </MenuBar>
 	<GridPane alignment="center" hgap="10.0" vgap="10.0">
@@ -75,6 +67,14 @@
 	     </TableView>
 	     <VBox GridPane.columnIndex="1" GridPane.rowIndex="1" prefWidth="200">
 	     	<Label text="Student Details" style="-fx-font: NORMAL 20 Tahoma;"/>
+	     </VBox>
+	     <VBox alignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="2" prefWidth="200">
+	      <ImageView fx:id="studentImage"  
+            fitHeight="150.0" fitWidth="200.0"
+            layoutX="69.0" layoutY="322.0" 
+            pickOnBounds="true" 
+            preserveRatio="true" />
+	     	<Label text="" fx:id="studentNameLabel" style="-fx-font: NORMAL 16 Tahoma;"/>
 	     </VBox>     
 	     <HBox spacing="10" alignment="bottom_right" GridPane.columnIndex="0" 
 	             GridPane.rowIndex="3">
